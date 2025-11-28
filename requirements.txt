@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+passlib
+bcrypt==4.0.1
+python-jose[cryptography]
+python-multipart
+pydantic[email]
+google-generativeai
+python-dotenv
+PyPDF2
+python-docx

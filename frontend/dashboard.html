@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - AI Knowledge Hub</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>AI Knowledge Hub</h2>
+                <p class="user-email" id="userEmail"></p>
+            </div>
+
+            <div class="nav-item active">
+                <span>📄</span> My Documents
+            </div>
+
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h1>My Documents</h1>
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn-secondary" id="uploadFileBtn">📤 Upload File</button>
+                    <button class="btn-secondary" id="newDocBtn">+ New Document</button>
+                </div>
+            </div>
+
+            <div class="documents-grid" id="documentsGrid">
+                <div class="loading">Loading documents...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload File Modal -->
+    <div id="uploadModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Upload File</h2>
+                <button class="close-btn" id="closeUploadModal">&times;</button>
+            </div>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label for="uploadFile">Select File (PDF, DOCX, TXT)</label>
+                    <input type="file" id="uploadFile" accept=".pdf,.docx,.txt" required>
+                </div>
+                <div class="form-group">
+                    <label for="uploadTitle">Title (optional)</label>
+                    <input type="text" id="uploadTitle" placeholder="Leave empty to use filename">
+                </div>
+                <div class="form-group">
+                    <label for="uploadCategory">Category (optional)</label>
+                    <input type="text" id="uploadCategory" placeholder="e.g., Research, Notes">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload & Extract Text</button>
+            </form>
+            <div id="uploadProgress" class="hidden" style="margin-top: 16px; color: #10b981;">
+                Uploading and processing...
+            </div>
+        </div>
+    </div>
+
+    <!-- New/Edit Document Modal -->
+    <div id="documentModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">New Document</h2>
+                <button class="close-btn" id="closeModal">&times;</button>
+            </div>
+            <form id="documentForm">
+                <div class="form-group">
+                    <label for="docTitle">Title</label>
+                    <input type="text" id="docTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="docCategory">Category</label>
+                    <input type="text" id="docCategory" placeholder="e.g., Research, Notes">
+                </div>
+                <div class="form-group">
+                    <label for="docContent">Content</label>
+                    <textarea id="docContent" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Document</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Document Modal -->
+    <div id="viewModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="viewTitle"></h2>
+                <button class="close-btn" id="closeViewModal">&times;</button>
+            </div>
+            <div id="viewContent" style="white-space: pre-wrap; line-height: 1.6; margin-bottom: 20px;"></div>
+
+            <h3 style="margin-bottom: 12px;">AI Tools</h3>
+            <div class="ai-tools">
+                <button class="ai-btn" data-action="summarize">📝 Summarize</button>
+                <button class="ai-btn" data-action="keypoints">🎯 Key Points</button>
+                <button class="ai-btn" data-action="paraphrase">✍️ Paraphrase</button>
+                <button class="ai-btn" data-action="ask">❓ Ask Question</button>
+            </div>
+
+            <div id="aiResult" class="ai-result hidden"></div>
+
+            <div id="saveAiResult" class="hidden" style="margin-top: 12px;">
+                <button class="btn-secondary" id="saveAiBtn" style="background: #10b981;">💾 Save as New
+                    Document</button>
+            </div>
+
+            <div style="margin-top: 20px; display: flex; gap: 12px;">
+                <button class="btn-secondary" id="editDocBtn">Edit</button>
+                <button class="btn-secondary" id="deleteDocBtn" style="background: #ef4444;">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/documents.js"></script>
+    <script src="js/ai.js"></script>
+</body>
+
+</html>
